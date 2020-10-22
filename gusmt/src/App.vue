@@ -1,32 +1,51 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app">
+        <router-view />
+        <MainNav />
     </div>
-    <router-view/>
-  </div>
 </template>
 
+<script>
+import SharedMethods from "./utils/shared";
+SharedMethods.initTheme();
+
+import MainNav from "./components/MainNav";
+
+export default {
+    components: {
+        MainNav,
+    },
+};
+</script>
+
 <style>
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+    font-family: "Poppins", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-#nav {
-  padding: 30px;
+.light-theme {
+    --main-color: #fff;
+    --secondary-color: #f4f5f7;
+    --main-font-color: #444547;
+    --secondary-font-color: #555;
+    --error-red: #e60000;
+    --main-accent: #5c55f7;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.dark-theme {
+    --main-color: #343434;
+    --secondary-color: #2d2d2d;
+    --main-font-color: #929292;
+    --secondary-font-color: #fff;
+    --error-red: #e60000;
+    --main-accent: #5c55f7;
 }
 </style>
