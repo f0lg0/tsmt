@@ -1,9 +1,7 @@
 <template>
     <div>
         <Editor />
-        <div id="canva">
-            <p>canva</p>
-        </div>
+        <div id="canva"></div>
     </div>
 </template>
 

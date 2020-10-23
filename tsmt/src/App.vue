@@ -35,7 +35,7 @@ export default {
     --main-color: #fff;
     --secondary-color: #f4f5f7;
     --main-font-color: #444547;
-    --secondary-font-color: #555;
+    --secondary-font-color: #000;
     --error-red: #e60000;
     --main-accent: #5c55f7;
 }
