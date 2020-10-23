@@ -1,2 +1,3 @@
-# gusml
-General UML Software Modelling Language
+# T.S.M.T.
+
+Make UML diagrams by writing code
