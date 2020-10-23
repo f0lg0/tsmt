@@ -1,19 +1,25 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Rendered from "../views/Rendered.vue";
+import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: "/",
-        name: "Rendered",
-        component: Rendered,
+        name: "Home",
+        component: Home,
     },
     {
         path: "/about",
         name: "About",
-        component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
+        component: () => import("../views/About.vue"),
+    },
+
+    {
+        path: "/draw",
+        name: "Draw",
+        component: () => import("../views/Draw.vue"),
     },
 ];
 

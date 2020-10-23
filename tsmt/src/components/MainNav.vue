@@ -7,22 +7,17 @@
 
             <button id="toggler" @click="toggleTheme()">Theme</button>
         </div>
-        <Editor />
     </div>
 </template>
 
 <script>
 import SharedMethods from "../utils/shared";
-import Editor from "./Editor";
 
 export default {
     methods: {
         toggleTheme() {
             SharedMethods.toggleTheme();
         },
-    },
-    components: {
-        Editor,
     },
 };
 </script>
