@@ -10,16 +10,23 @@
 </template>
 
 <script>
+import EventBus from "../utils/EventBus";
+
 export default {
     data() {
         return {
             payload: "",
         };
     },
+
+    created() {
+        EventBus.$on("render", () => {
+            this.render(this.payload);
+        });
+    },
     methods: {
         processKey(event) {
             const el = event.target;
-            console.log(event.key);
             if (event.key === "Tab") {
                 event.preventDefault();
 
@@ -40,6 +47,10 @@ export default {
                     el.selectionStart = el.selectionEnd = el.selectionStart - 1;
                 }, 50);
             }
+        },
+
+        render(payload) {
+            console.log(payload.split(" "));
         },
     },
 };
@@ -68,7 +79,7 @@ export default {
     background-color: var(--secondary-color);
     border: none;
 
-    color: var(--main-font-color);
+    color: var(--secondary-font-color);
     padding: 10px;
 }
 

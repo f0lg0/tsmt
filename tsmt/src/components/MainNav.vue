@@ -5,6 +5,25 @@
                 <div id="logo"></div>
             </router-link>
 
+            <div id="render">
+                <svg
+                    @click="emitRender()"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-player-play"
+                    width="28"
+                    height="28"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="#f2f2f2"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M7 4v16l13 -8z" />
+                </svg>
+            </div>
+
             <div id="toggler" @click="toggleTheme()">
                 <svg
                     v-if="darkTheme"
@@ -14,7 +33,7 @@
                     height="24"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
-                    stroke="#000000"
+                    stroke="#f2f2f2"
                     fill="none"
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -33,7 +52,7 @@
                     height="24"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
-                    stroke="#000000"
+                    stroke="#f2f2f2"
                     fill="none"
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -51,6 +70,7 @@
 
 <script>
 import SharedMethods from "../utils/shared";
+import EventBus from "../utils/EventBus";
 
 export default {
     data() {
@@ -63,6 +83,10 @@ export default {
         toggleTheme() {
             SharedMethods.toggleTheme();
             this.darkTheme = !this.darkTheme;
+        },
+
+        emitRender() {
+            EventBus.broadcastRender();
         },
     },
 };
@@ -101,7 +125,22 @@ export default {
     margin: auto;
 }
 
-#toggler svg {
-    stroke: #f2f2f2;
+#render {
+    width: 30px;
+    height: 28px;
+
+    margin: auto;
+    margin-top: 50px;
+
+    cursor: pointer;
+}
+
+#render svg {
+    fill: #f2f2f2;
+    transition: 0.5s;
+}
+
+#render svg:hover {
+    fill: transparent;
 }
 </style>
