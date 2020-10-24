@@ -53,12 +53,23 @@ export default {
             payload = payload.split("\n");
             let parsed = {};
 
+            let prevClass = "";
             payload.forEach((loc) => {
-                let index = 0;
-
                 if (new RegExp("class" + " " + "\\w+" + " " + "{").test(loc)) {
                     loc = loc.split(" ");
-                    parsed[loc[1]] = {};
+                    parsed[loc[1]] = [];
+                    prevClass = loc[1];
+                } else if (loc !== "}" && loc !== "\n" && loc !== "") {
+                    const parsedAttribute = loc.substring(4).split(":");
+
+                    parsed[prevClass].push({
+                        attribute: parsedAttribute[0],
+                        type: parsedAttribute[1]
+                            .replace(";", "")
+                            .replace(" ", ""),
+                    });
+                } else if (loc === "}") {
+                    prevClass = "";
                 }
             });
 
