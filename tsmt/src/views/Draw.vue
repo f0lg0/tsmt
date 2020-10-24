@@ -7,8 +7,24 @@
 
 <script>
 import Editor from "../components/Editor";
+import EventBus from "../utils/EventBus";
 
 export default {
+    created() {
+        EventBus.$on("parsedPayload", (payload) => {
+            const classes = Object.keys(payload);
+
+            for (const c of classes) {
+                const classDiv = document.createElement("div");
+                classDiv.style.width = "100px";
+                classDiv.style.height = "100px";
+                classDiv.style.border = "1px solid red";
+                classDiv.innerText = c;
+
+                document.getElementById("canva").appendChild(classDiv);
+            }
+        });
+    },
     components: {
         Editor,
     },

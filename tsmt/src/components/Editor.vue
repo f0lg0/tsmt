@@ -80,6 +80,7 @@ export default {
             });
 
             console.log(parsed);
+            EventBus.broadcastParsedPayload(parsed);
         },
     },
 };

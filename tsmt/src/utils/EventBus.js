@@ -5,6 +5,10 @@ const EventBus = new Vue({
         broadcastRender() {
             this.$emit("render");
         },
+
+        broadcastParsedPayload(payload) {
+            this.$emit("parsedPayload", payload);
+        },
     },
 });
 
