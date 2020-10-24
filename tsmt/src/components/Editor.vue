@@ -50,7 +50,19 @@ export default {
         },
 
         render(payload) {
-            console.log(payload.split(" "));
+            payload = payload.split("\n");
+            let parsed = {};
+
+            payload.forEach((loc) => {
+                let index = 0;
+
+                if (new RegExp("class" + " " + "\\w+" + " " + "{").test(loc)) {
+                    loc = loc.split(" ");
+                    parsed[loc[1]] = {};
+                }
+            });
+
+            console.log(parsed);
         },
     },
 };
