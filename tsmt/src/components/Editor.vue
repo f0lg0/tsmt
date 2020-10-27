@@ -27,6 +27,7 @@ export default {
     methods: {
         processKey(event) {
             const el = event.target;
+
             if (event.key === "Tab") {
                 event.preventDefault();
 
@@ -46,6 +47,10 @@ export default {
                     el.value += "}";
                     el.selectionStart = el.selectionEnd = el.selectionStart - 1;
                 }, 50);
+            } else if (event.key === "Alt") {
+                document.getElementById(
+                    "codeEditor"
+                ).value = `class User {\n    id: string;\n    username: string;\n    password: string;\n}\nclass Post {\n    id: string;\n    author: string;\n    description: string;\n}`;
             }
         },
 
