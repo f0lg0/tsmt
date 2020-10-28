@@ -5,6 +5,7 @@
             id="codeEditor"
             @keydown="processKey($event)"
             v-model="payload"
+            placeholder="Code here..."
         ></textarea>
     </div>
 </template>

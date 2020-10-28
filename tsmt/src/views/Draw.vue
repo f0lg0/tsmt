@@ -45,16 +45,19 @@ export default {
 
                 wrapper.style.width = "200px";
                 wrapper.style.minHeight = "100px";
-                wrapper.style.border = "2px solid black";
+                wrapper.style.border = "2px solid var(--secondary-font-color)";
                 wrapper.style.borderRadius = "5px";
+                wrapper.style.color = "var(--secondary-font-color)";
                 wrapper.id = `wrapper-${wrapperId}`;
                 wrapperId++;
+
                 leftPos += 300;
 
                 const classDiv = document.createElement("div");
                 classDiv.style.width = "198px";
                 classDiv.style.height = "28px";
-                classDiv.style.borderBottom = "2px solid black";
+                classDiv.style.borderBottom =
+                    "2px solid var(--secondary-font-color)";
                 classDiv.innerText = c;
                 classDiv.style.textAlign = "center";
 

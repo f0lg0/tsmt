@@ -5,7 +5,7 @@
                 <div id="logo"></div>
             </router-link>
 
-            <div id="render">
+            <div id="render" v-if="$route.path != '/'">
                 <svg
                     @click="emitRender()"
                     xmlns="http://www.w3.org/2000/svg"
