@@ -26,15 +26,30 @@ export default {
             const classes = Object.keys(payload);
 
             let wrapperId = 0;
+            let leftPos = 0;
+            let topPos = 0;
             for (const c of classes) {
                 const wrapper = document.createElement("div");
                 let wrapperHeight = 100;
                 wrapper.style.position = "absolute";
+                wrapper.style.left = `${leftPos}px`;
+                wrapper.style.top = `${topPos}px`;
+
+                if (leftPos >= 900) {
+                    leftPos = 0;
+                    wrapper.style.left = `${leftPos}px`;
+
+                    topPos += 200;
+                    wrapper.style.top = `${topPos}px`;
+                }
+
                 wrapper.style.width = "200px";
                 wrapper.style.minHeight = "100px";
                 wrapper.style.border = "2px solid black";
                 wrapper.style.borderRadius = "5px";
                 wrapper.id = `wrapper-${wrapperId}`;
+                wrapperId++;
+                leftPos += 300;
 
                 const classDiv = document.createElement("div");
                 classDiv.style.width = "198px";
@@ -60,7 +75,6 @@ export default {
                 wrapper.appendChild(classDiv);
                 wrapper.appendChild(attributes);
                 this.dragElement(wrapper);
-                wrapperId++;
 
                 drawable.appendChild(wrapper);
             }
@@ -131,7 +145,7 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
     width: 90%;
     height: 90%;
