@@ -1,22 +1,29 @@
 <template>
-    <div id="editor">
-        <textarea
-            name="code"
-            id="codeEditor"
-            @keydown="processKey($event)"
-            v-model="payload"
-            placeholder="Code here..."
-        ></textarea>
+    <div>
+        <div id="editor">
+            <textarea
+                name="code"
+                id="codeEditor"
+                @keydown="processKey($event)"
+                v-model="payload"
+                placeholder="Code here..."
+                spellcheck="false"
+            ></textarea>
+        </div>
+
+        <ErrorPopUp v-if="error" @display-popup="error = $event" />
     </div>
 </template>
 
 <script>
 import EventBus from "../utils/EventBus";
+import ErrorPopUp from "./ErrorPopUp";
 
 export default {
     data() {
         return {
             payload: "",
+            error: false,
         };
     },
 
@@ -35,23 +42,17 @@ export default {
                 const start = el.selectionStart;
                 const end = el.selectionEnd;
 
-                // set textarea value to: text before caret + tab + text after caret
                 el.value =
                     el.value.substring(0, start) +
                     "    " +
                     el.value.substring(end);
 
-                // put caret at right position again
                 el.selectionStart = el.selectionEnd = start + 4;
             } else if (event.key === "{") {
                 setTimeout(() => {
                     el.value += "}";
                     el.selectionStart = el.selectionEnd = el.selectionStart - 1;
                 }, 50);
-            } else if (event.key === "Alt") {
-                document.getElementById(
-                    "codeEditor"
-                ).value = `class User {\n    id: string;\n    username: string;\n    password: string;\n}\nclass Post {\n    id: string;\n    author: string;\n    description: string;\n}`;
             }
         },
 
@@ -81,13 +82,16 @@ export default {
                         prevClass = "";
                     }
                 } catch {
-                    console.log("[ERR] Syntax Error");
+                    this.error = true;
                 }
             });
 
-            console.log(parsed);
             EventBus.broadcastParsedPayload(parsed);
         },
+    },
+
+    components: {
+        ErrorPopUp,
     },
 };
 </script>

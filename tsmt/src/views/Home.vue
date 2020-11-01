@@ -10,7 +10,7 @@
             </div>
             <p>or</p>
             <div class="btn">
-                <p>Load diagram</p>
+                <p>Load diagram <br />(NOT AVAILABLE YET)</p>
             </div>
         </div>
     </div>
